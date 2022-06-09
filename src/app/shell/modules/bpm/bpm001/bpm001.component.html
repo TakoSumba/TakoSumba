@@ -1,0 +1,41 @@
+<form class="ui segments" [formGroup]="formGroup">
+  <div class="ui segment">
+    <h1>კლიენტის რეგისტრაცია</h1>
+  </div>
+  <div class="ui segment">
+    <div class="ui form">
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="firstName">სახელი</label>
+          <input type="text" formControlName="firstName" id="firstName">
+        </div>
+      </div>
+      <p *ngIf="get('firstName').invalid && get('firstName').touched">
+        <ng-container *ngFor="let error of errors('firstName')">
+          <span>{{ error }}</span>
+        </ng-container>
+      </p>
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="lastName">გვარი</label>
+          <input type="text" formControlName="lastName" id="lastName">
+        </div>
+      </div>
+      <p *ngIf="get('lastName').invalid && get('lastName').touched">
+        <ng-container *ngFor="let error of errors('lastName')">
+          <span>{{ error }}</span>
+        </ng-container>
+      </p>
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="firstName">Plus ქულები</label>
+          <input type="text" formControlName="plusPoints" id="plusPoints">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="ui segment">
+  <button type="submit" class="ui orange button"> რეგისტრაცია </button>
+</div>
+</form>
