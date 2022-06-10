@@ -29,10 +29,15 @@
       <div class="ui fields">
         <div class="nine wide field">
           <label for="firstName">Plus ქულები</label>
-          <input type="text" formControlName="plusPoints" id="plusPoints">
+          <input type="number" formControlName="plusPoints" id="plusPoints">
         </div>
       </div>
     </div>
+    <p *ngIf="get('plusPoints').invalid && get('plusPoints').touched">
+      <ng-container *ngFor="let error of errors('plusPoints')">
+        <span>{{ error }}</span>
+      </ng-container>
+    </p>
 
   </div>
   <div class="ui segment">

@@ -34,9 +34,8 @@ export class Bpm001Component implements OnInit {
         Validators.maxLength(30),
       ]),
       plusPoints: new FormControl(undefined, [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
+        Validators.required, Validators.minAmount
+
       ]),
   });
 

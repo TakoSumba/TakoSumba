@@ -31,6 +31,14 @@ export class Validators extends NGValidators {
     };
   }
 
+  static minAmount(control){
+    if (control.value < 0 ){
+      return {
+        minAmount : 'გთხოვთ შეიყვანოთ მინიმუმ 0'
+      };
+    }
+  }
+
   static checkPassword(control: FormControl) {
 
   }
