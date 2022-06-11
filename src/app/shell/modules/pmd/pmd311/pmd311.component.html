@@ -1,1 +1,61 @@
-<p>pmd311 works!</p>
+<form class="ui segments">
+  <div class="ui segment">
+    <h1>თანხის გადარიცხვა</h1>
+  </div>
+  <div class="ui segment">
+    <div class="ui form "[formGroup]="formGroup">
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="senderAccountKey">გამგზავნი ანგარიში</label>
+          <select formControlName="senderAccountKey" id="senderAccountKey">
+            <option value="" >აირჩიე</option>
+            <option value="1095"> 1095 - 184.00GEL (badri) </option>
+            <option value="1064"> 1064 - 11757.00GEL (qwewqe) </option>
+            <option value="1063"> 1063 - 1197.00GEL (qwe) </option>
+            <option value="1066"> 1066 - 1110.00GEL (qaq) </option>
+          </select>
+        </div>
+
+      </div>
+      <ng-container *ngIf="get('senderAccountKey').touched && get('senderAccountKey').touched">
+        <p *ngFor="let error of errors('senderAccountKey')">
+          <span>{{ error }}</span>
+        </p>
+      </ng-container>
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="receiverAccountKey">მიმღები ანგარიში</label>
+          <select formControlName="receiverAccountKey" id="receiverAccountKey">
+            <option value="">აირჩიე</option>
+            <option value="1128"> 1128 - 123413.00GEL (fas fa) </option>
+            <option value="1134"> 1134 - 0.00GEL (ლევან ბეროშვილი) </option>
+          </select>
+        </div>
+      </div>
+      <ng-container *ngIf="get('receiverAccountKey').touched && get('receiverAccountKey').touched">
+        <p *ngFor="let error of errors('receiverAccountKey')">
+          <span>{{ error }}</span>
+        </p>
+      </ng-container>
+
+      <div class="ui fields">
+        <div class="nine wide field">
+          <label for="amount">თანხა</label>
+          <input type="number" formControlName="amount" id="amount">
+        </div>
+      </div>
+      <ng-container *ngIf="get('amount').touched && get('amount').touched">
+        <p *ngFor="let error of errors('amount')">
+          <span>{{ error }}</span>
+        </p>
+      </ng-container>
+    </div>
+
+  </div>
+  <div class="ui segment">
+    <button class="ui orange icon button">
+      გადარიცხვა
+    </button>
+  </div>
+
+</form>
