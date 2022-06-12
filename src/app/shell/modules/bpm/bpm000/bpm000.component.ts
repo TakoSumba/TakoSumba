@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'bg-bpm000',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bpm000.component.scss']
 })
 export class Bpm000Component implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
   }
 
+  onClick() {
+    this.router.navigate(['../bpm001'], {relativeTo: this.route,});
+    console.log(this.router);
+  }
 }

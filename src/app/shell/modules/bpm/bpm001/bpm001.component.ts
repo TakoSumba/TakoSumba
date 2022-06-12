@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Validators} from '../../../../auth/validation-message';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'bg-bpm001',
@@ -9,12 +10,14 @@ import {Validators} from '../../../../auth/validation-message';
 })
 export class Bpm001Component implements OnInit {
   formGroup: FormGroup;
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
   }
-
+  onClick(){
+      this.router.navigate(['/krn/krnicp'], {relativeTo: this.route});
+  }
   errors(controlName) {
     return this.get(controlName).errors && Object.values(this.get(controlName).errors);
   }

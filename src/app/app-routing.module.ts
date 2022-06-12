@@ -4,12 +4,81 @@ import {AuthComponent} from './auth/auth.component';
 import {ShellComponent} from './shell/shell.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {LoginComponent} from './auth/login/login.component';
+import {BpmComponent} from './shell/modules/bpm/bpm.component';
+import {Bpm000Component} from './shell/modules/bpm/bpm000/bpm000.component';
+import {Bpm001Component} from './shell/modules/bpm/bpm001/bpm001.component';
+import {KrnComponent} from './shell/modules/krn/krn.component';
+import {KrnicpComponent} from './shell/modules/krn/krnicp/krnicp.component';
+import {AccountsComponent} from './shell/modules/krn/accounts/accounts.component';
+import {CreateAccountComponent} from './shell/modules/krn/accounts/create-account/create-account.component';
+import {OperationsComponent} from './shell/modules/krn/operations/operations.component';
+import {ClientHeaderComponent} from './shell/client-header/client-header.component';
+import {PmdComponent} from './shell/modules/pmd/pmd.component';
+
+import {Pmd311Component} from './shell/modules/pmd/pmd311/pmd311.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'shell',
-    pathMatch: 'full'
+    component: ShellComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'bpm/bpm000',
+        pathMatch: 'full'
+      },
+      {
+        path: 'bpm',
+        component: BpmComponent,
+        children: [
+          {
+            path: 'bpm000',
+            component: Bpm000Component
+          },
+          {
+            path: 'bpm001',
+            component: Bpm001Component
+          }
+        ]
+      },
+
+      {
+        path: 'krn',
+        component: KrnComponent,
+        children: [
+          {
+            path: 'krnicp',
+            component: KrnicpComponent
+          },
+          {
+            path: 'accounts',
+            component: AccountsComponent,
+            children: [
+              {
+                path: 'create',
+                component: CreateAccountComponent
+              }
+            ]
+          },
+          {
+            path: 'operations',
+            component: OperationsComponent
+          }
+        ]
+
+      },
+      {
+        path: 'pmd',
+        component: PmdComponent,
+        children: [
+          {
+            path: 'pmd311',
+            component: Pmd311Component
+          }
+
+        ]
+      }
+    ]
   },
   {
     path: 'auth',
@@ -25,12 +94,6 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'shell',
-    component: ShellComponent,
-    children: []
-  },
-
 ];
 
 @NgModule({
