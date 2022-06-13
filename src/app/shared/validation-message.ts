@@ -31,15 +31,13 @@ export class Validators extends NGValidators {
     };
   }
 
-  static minAmount(control){
-    if (control.value < 0 ){
-      return {
-        minAmount : 'გთხოვთ შეიყვანოთ მინიმუმ 0'
-      };
-    }
+  static min(min: number) {
+   return (control) => super.min(min)(control) ? {required: 'გთხოვთ შეიყვანოთ მინიმუმ 0'} : undefined;
   }
 
-  static checkPassword(control: FormControl) {
-
-  }
+  // static checkPassword(password: string) {
+  //   return (control) =>
+  //     control.value !== password ? {confirmPasswordMismatch: 'პაროლები არ ემთხვევა დებილო'}
+  //       : undefined;
+  // }
 }
