@@ -52,14 +52,14 @@ const routes: Routes = [
           },
           {
             path: 'accounts',
-            component: AccountsComponent,
-            children: [
-              {
-                path: 'create',
-                component: CreateAccountComponent
-              }
-            ]
+            component: AccountsComponent
           },
+
+          {
+            path: 'accounts/create',
+            component: CreateAccountComponent
+          },
+
           {
             path: 'operations',
             component: OperationsComponent

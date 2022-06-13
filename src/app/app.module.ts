@@ -23,7 +23,7 @@ import { PmdComponent } from './shell/modules/pmd/pmd.component';
 import { Pmd311Component } from './shell/modules/pmd/pmd311/pmd311.component';
 import { SharedComponent } from './shared/shared.component';
 import { ClientHeaderComponent } from './shell/client-header/client-header.component';
-import { ActiveDirective } from './shell/client-header/active.directive';
+
 
 
 @NgModule({
@@ -48,7 +48,7 @@ import { ActiveDirective } from './shell/client-header/active.directive';
     Pmd311Component,
     SharedComponent,
     ClientHeaderComponent,
-    ActiveDirective,
+
 
   ],
     imports: [

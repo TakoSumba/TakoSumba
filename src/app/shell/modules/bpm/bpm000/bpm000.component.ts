@@ -17,4 +17,8 @@ export class Bpm000Component implements OnInit {
     this.router.navigate(['../bpm001'], {relativeTo: this.route,});
     console.log(this.router);
   }
+  // onClientClick(clientId:string) {
+  //   this.router.navigate(['../bpm001'], {relativeTo: this.route,});
+  //   console.log(this.router);
+  // }
 }
