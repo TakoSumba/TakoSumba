@@ -1,10 +1,10 @@
 
-<form class="ui segments ng-untouched ng-pristine ng-invalid" >
+<div class="ui segments ng-untouched ng-pristine ng-invalid" >
   <div class="ui segment">
     <h1>ანგარიშის შექმნა</h1>
   </div>
   <div class="ui segment">
-    <div class="ui form" [formGroup]="formGroup">
+    <form class="ui form" [formGroup]="formGroup">
       <div class="ui fields">
         <div class="nine wide field">
           <label for="accountName">ანგარიშის სახელი </label>
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-    </div>
+    </form>
     <ng-container *ngIf="get('amount').touched && get('amount').invalid ">
       <p  *ngFor="let error of errors('amount')">
         <span>{{ error }}</span>
@@ -35,4 +35,4 @@
   <div class="ui segment">
     <button class="ui orange button">შექმნა</button>
   </div>
-</form>
+</div>

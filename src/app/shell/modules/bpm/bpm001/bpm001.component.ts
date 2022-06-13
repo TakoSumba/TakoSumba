@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Validators} from '../../../../auth/validation-message';
+import {Validators} from '../../../../shared/validation-message';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -37,7 +37,7 @@ export class Bpm001Component implements OnInit {
         Validators.maxLength(30),
       ]),
       plusPoints: new FormControl(undefined, [
-        Validators.required, Validators.minAmount
+        Validators.required, Validators.min(0)
 
       ]),
   });

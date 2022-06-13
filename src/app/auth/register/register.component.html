@@ -5,9 +5,9 @@
       <i class="address card icon"></i>
     </div>
   </div>
-  <ng-container *ngIf="get('name').touched">
+  <ng-container *ngIf="get('name').invalid && get('name').touched">
     <p *ngFor="let error of errors('name')">
-      <span>{{ error }}</span>
+      <span class="errorMessage">{{ error }}</span>
     </p>
   </ng-container>
   <div class="field">
@@ -19,7 +19,7 @@
 
   <p *ngIf="get('userName').invalid && get('userName').touched">
     <ng-container *ngFor="let error of errors('userName')">
-      <span>{{ error }}</span>
+      <span class="errorMessage">{{ error }}</span>
 
     </ng-container>
   </p>
@@ -31,9 +31,9 @@
     </div>
 
   </div>
-  <ng-container *ngIf="get('password').touched ">
+  <ng-container *ngIf="get('password').invalid && get('password').touched ">
     <p  *ngFor="let error of errors('password')">
-      <span>{{ error }}</span>
+      <span class="errorMessage">{{ error }}</span>
     </p>
   </ng-container>
 
@@ -42,9 +42,9 @@
       <input type="password" formControlName="confirmPassword" placeholder="განმეორებითი პაროლი">
       <i class="lock  icon"></i>
     </div>
-    <ng-container *ngIf="get('confirmPassword').touched">
+    <ng-container *ngIf="get('confirmPassword').invalid && get('confirmPassword').touched">
       <p *ngFor="let error of errors('confirmPassword')">
-        <span>{{ error }}</span>
+        <span class="errorMessage">{{ error }}</span>
       </p>
       <div *ngIf="checkPassword(get('password').value,get('confirmPassword').value)">
         <span>პაროლები არ ემთხვევა</span>

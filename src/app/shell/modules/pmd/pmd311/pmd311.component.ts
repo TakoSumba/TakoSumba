@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Validators} from '../../../../auth/validation-message';
+import {Validators} from '../../../../shared/validation-message';
 
 @Component({
   selector: 'bg-pmd311',

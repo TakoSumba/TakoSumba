@@ -1,4 +1,4 @@
-<div class="ui form " [formGroup]="formGroup" >
+<form class="ui form " [formGroup]="formGroup" >
   <div class="field">
     <div class="ui left icon input">
       <input type="text" formControlName="userName" placeholder="მომხმარებელი">
@@ -7,11 +7,11 @@
 
   </div>
 
-  <p *ngIf="get('userName').invalid && get('userName').touched">
-    <ng-container *ngFor="let error of errors('userName')">
-      <span>{{ error }}</span>
-  </ng-container>
+  <ng-container *ngIf="get('userName').invalid && get('userName').touched">
+    <p *ngFor="let error of errors('userName')">
+      <span class="errorMessage">{{ error }}</span>
   </p>
+  </ng-container>
 
   <div class="field">
     <div class="ui left icon input" >
@@ -21,15 +21,15 @@
 
   </div>
 
-  <ng-container *ngIf="get('password').touched">
+  <ng-container *ngIf="get('password').invalid && get('password').touched">
     <p *ngFor="let error of errors('password')">
-      <span>{{ error }}</span>
+      <span class="errorMessage">{{ error }}</span>
     </p>
   </ng-container>
  <a routerLink="register">
    <span  class="ui orange text" >რეგისტრაცია</span>
  </a>
 
-    <button type="submit" class="ui basic orange right floated button"><i class="sign in alternate icon"></i>შესვლა</button>
+    <button type="submit" class="ui basic orange right floated button" routerLink="/bpm/bpm000"><i class="sign in alternate icon"></i>შესვლა</button>
 
-</div>
+</form>

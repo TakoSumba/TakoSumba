@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Validators} from '../../../../../auth/validation-message';
+import {Validators} from '../../../../../shared/validation-message';
 
 @Component({
   selector: 'bg-create-account',
@@ -35,6 +35,7 @@ export class CreateAccountComponent implements OnInit {
       ]),
       amount: new FormControl(undefined, [
         Validators.required,
+        Validators.min(0)
       ]),
     });
   }

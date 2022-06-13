@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Validators} from '../validation-message';
+import {Validators} from '../../shared/validation-message';
+
 @Component({
   selector: 'bg-register',
   templateUrl: './register.component.html',
@@ -26,10 +27,12 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  checkPassword(password, confirmPassword){
-    if (password !== confirmPassword){
+  checkPassword(password, confirmPassword) {
+    if (password !== confirmPassword) {
       return true;
-    }else return false
+    } else {
+      return false;
+    }
 
   }
 
@@ -39,7 +42,7 @@ export class RegisterComponent implements OnInit {
       name: new FormControl(undefined, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(30), ]),
+        Validators.maxLength(30),]),
       userName: new FormControl(undefined, [
         Validators.required,
         Validators.minLength(2),
@@ -55,7 +58,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^\S*$/),
         Validators.minLength(2),
-        Validators.maxLength(30), ])
+        Validators.maxLength(30),
+        // Validators.checkPassword(this.formGroup.get('password')?.value)
+      ]),
     });
   }
 }
