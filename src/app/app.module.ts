@@ -8,13 +8,16 @@ import {PopupDirective} from './shell/shell-header/popup.directive';
 
 import {AuthModule} from './auth/auth.module';
 import {ShellModule} from './shell/shell-module';
+import {HttpClientModule} from '@angular/common/http';
+import {CoreModule} from './core.module';
+import {AlertComponent} from './shared/alert/alert.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PopupDirective,
-
+    AlertComponent
 
   ],
     imports: [
@@ -23,7 +26,9 @@ import {ShellModule} from './shell/shell-module';
         AppRoutingModule,
         ReactiveFormsModule,
         AuthModule,
-        ShellModule
+        ShellModule,
+        HttpClientModule,
+        CoreModule,
 
     ],
   providers: [],

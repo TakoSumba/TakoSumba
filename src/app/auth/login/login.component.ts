@@ -1,8 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 
 import {Router} from '@angular/router';
 import {Validators} from '../../shared/validation-message';
+import {AuthService} from '../../shared/auth/auth.service';
+import {Subscription} from 'rxjs';
+import {PlaceholderDirective} from '../../shared/placeholder.directive';
+import {AlertComponent} from '../../shared/alert/alert.component';
 
 @Component({
   selector: 'bg-login',
@@ -11,8 +15,10 @@ import {Validators} from '../../shared/validation-message';
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
-
-  constructor(private router: Router) {
+  closeSub: Subscription;
+  @ViewChild(PlaceholderDirective) alertPlaceholder: PlaceholderDirective;
+  constructor(private router: Router, private authService: AuthService,
+              private cfr: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
@@ -26,6 +32,23 @@ export class LoginComponent implements OnInit {
     // return this.get(controlName)?.errors
     //   ? Object.values(this.get(controlName).errors)
     //   : [];
+  }
+  onLogin() {
+    if (this.formGroup.invalid) {
+      return;
+    }
+    const username = this.get('userName').value;
+    const password = this.get('password').value;
+    this.authService.login(username, password).subscribe(
+      (resData) => {
+        console.log(resData);
+        this.router.navigate(['/']);
+        this.formGroup.reset();
+      },
+      (error) => {
+        this.showError(error);
+      }
+    );
   }
 
   get(controlName) {
@@ -50,6 +73,21 @@ export class LoginComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(30),
       ]),
+    });
+  }
+
+  private showError(error: string) {
+    const alertComponentFactory = this.cfr.resolveComponentFactory(
+      AlertComponent
+    );
+    this.alertPlaceholder.viewContainerRef.clear();
+    const alertRef = this.alertPlaceholder.viewContainerRef.createComponent(
+      alertComponentFactory
+    );
+    alertRef.instance.error = error;
+    this.closeSub = alertRef.instance.closeClick.subscribe(() => {
+      this.closeSub.unsubscribe();
+      this.alertPlaceholder.viewContainerRef.clear();
     });
   }
 }
