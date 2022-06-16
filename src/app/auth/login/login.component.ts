@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 
 import {Router} from '@angular/router';
@@ -7,23 +7,31 @@ import {AuthService} from '../../shared/auth/auth.service';
 import {Subscription} from 'rxjs';
 import {PlaceholderDirective} from '../../shared/placeholder.directive';
 import {AlertComponent} from '../../shared/alert/alert.component';
+import {DialogService} from '../../dialog-service';
 
 @Component({
   selector: 'bg-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  closeSub: Subscription;
-  @ViewChild(PlaceholderDirective) alertPlaceholder: PlaceholderDirective;
-  constructor(private router: Router, private authService: AuthService,
-              private cfr: ComponentFactoryResolver) {
+
+
+  constructor(private router: Router,
+              private authService: AuthService,
+              private dialogService: DialogService
+  ) {
   }
 
   ngOnInit(): void {
     this.initForm();
   }
+
+  ngOnDestroy() {
+
+  }
+
 
   errors(controlName) {
     // tslint:disable-next-line:no-debugger
@@ -33,6 +41,7 @@ export class LoginComponent implements OnInit {
     //   ? Object.values(this.get(controlName).errors)
     //   : [];
   }
+
   onLogin() {
     if (this.formGroup.invalid) {
       return;
@@ -42,11 +51,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe(
       (resData) => {
         console.log(resData);
-        this.router.navigate(['/']);
+        this.router.navigate(['/bpm/bpm000']);
         this.formGroup.reset();
       },
       (error) => {
-        this.showError(error);
+
+        this.dialogService.alert.next(error);
+
       }
     );
   }
@@ -76,19 +87,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private showError(error: string) {
-    const alertComponentFactory = this.cfr.resolveComponentFactory(
-      AlertComponent
-    );
-    this.alertPlaceholder.viewContainerRef.clear();
-    const alertRef = this.alertPlaceholder.viewContainerRef.createComponent(
-      alertComponentFactory
-    );
-    alertRef.instance.error = error;
-    this.closeSub = alertRef.instance.closeClick.subscribe(() => {
-      this.closeSub.unsubscribe();
-      this.alertPlaceholder.viewContainerRef.clear();
-    });
-  }
+
 }
 

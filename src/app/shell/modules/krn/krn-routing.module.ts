@@ -12,6 +12,11 @@ const routes: Routes = [
     component: KrnComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'krnicp',
+        pathMatch: 'full'
+      },
+      {
         path: 'krnicp',
         component: KrnicpComponent
       },

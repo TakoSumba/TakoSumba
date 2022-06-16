@@ -11,24 +11,24 @@ import {ShellModule} from './shell/shell-module';
 import {HttpClientModule} from '@angular/common/http';
 import {CoreModule} from './core.module';
 import {AlertComponent} from './shared/alert/alert.component';
+import {PlaceholderDirective} from './shared/placeholder.directive';
+import {LoaderComponent} from './shared/loader/loader.component';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PopupDirective,
-    AlertComponent
+
 
   ],
     imports: [
         BrowserModule,
-        FormsModule,
         AppRoutingModule,
-        ReactiveFormsModule,
-        AuthModule,
-        ShellModule,
         HttpClientModule,
         CoreModule,
+        SharedModule
 
     ],
   providers: [],

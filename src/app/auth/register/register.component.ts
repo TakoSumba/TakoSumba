@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Validators} from '../../shared/validation-message';
+import {AuthService} from '../../shared/auth/auth.service';
+import {DialogService} from '../../dialog-service';
 
 @Component({
   selector: 'bg-register',
@@ -11,7 +13,8 @@ import {Validators} from '../../shared/validation-message';
 export class RegisterComponent implements OnInit {
   formGroup: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService,
+              private dialogService: DialogService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +25,24 @@ export class RegisterComponent implements OnInit {
     return this.get(controlName).errors && Object.values(this.get(controlName).errors);
   }
 
+  onRegister() {
+    if (this.formGroup.invalid) {
+      return;
+    }
+    const name = this.get('name').value;
+    const username = this.get('userName').value;
+    const password = this.get('password').value;
+    this.authService.register(name, username, password).subscribe(
+      (resData) => {
+        console.log(resData);
+        this.router.navigate(['/bpm/bpm000']);
+        this.formGroup.reset();
+      },
+      (error) => {
+        this.dialogService.alert.next(error);
+      }
+    );
+  }
   get(controlName) {
     return this.formGroup.get(controlName);
   }

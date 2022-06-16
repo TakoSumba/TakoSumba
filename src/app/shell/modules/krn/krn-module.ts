@@ -15,9 +15,7 @@ import {KrnRoutingModule} from './krn-routing.module';
 
   declarations: [KrnComponent, OperationsComponent, KrnicpComponent,
     AccountsComponent, CreateAccountComponent],
-  imports: [ShellModule, KrnRoutingModule, CommonModule, ReactiveFormsModule],
-
-
-
+  imports: [KrnRoutingModule, ShellModule, CommonModule, ReactiveFormsModule],
 })
-export class KrnModule{}
+export class KrnModule {
+}

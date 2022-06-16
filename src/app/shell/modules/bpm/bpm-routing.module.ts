@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {BpmComponent} from './bpm.component';
 import {Bpm000Component} from './bpm000/bpm000.component';
 import {Bpm001Component} from './bpm001/bpm001.component';
+import {AuthGuard} from '../../../shared/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,11 +17,13 @@ const routes: Routes = [
       },
       {
         path: 'bpm000',
-        component: Bpm000Component
+        component: Bpm000Component,
+
       },
       {
         path: 'bpm001',
-        component: Bpm001Component
+        component: Bpm001Component,
+
       }
     ]
   },

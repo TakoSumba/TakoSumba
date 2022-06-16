@@ -7,21 +7,23 @@ const routes: Routes = [
     path: '',
     component: ShellComponent,
     children: [
-  {
-    path: 'bpm',
-    loadChildren: () =>
-      import('./modules/bpm/bpm-module').then((m) => m.BpmModule),
+      {
+        path: 'bpm',
+        loadChildren: () =>
+          import('./modules/bpm/bpm-module').then((m) => m.BpmModule),
+      },
+      {
+        path: 'krn',
+        loadChildren: () =>
+          import('./modules/krn/krn-module').then((m) => m.KrnModule),
+      },
+      {
+        path: 'pmd',
+        loadChildren: () =>
+          import('./modules/pmd/pmd.module').then((m) => m.PmdModule),
+      }
+    ]
   },
-  {
-    path: 'krn',
-    loadChildren: () =>
-      import('./modules/krn/krn-module').then((m) => m.KrnModule),
-  },
-  {
-    path: 'pmd',
-    loadChildren: () =>
-      import('./modules/pmd/pmd.module').then((m) => m.PmdModule),
-  }]},
 ];
 
 @NgModule({
@@ -30,4 +32,5 @@ const routes: Routes = [
 
 })
 
-export class ShellRoutingModule {}
+export class ShellRoutingModule {
+}

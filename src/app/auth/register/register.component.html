@@ -1,4 +1,4 @@
-<div class="ui form " [formGroup]="formGroup">
+<form class="ui form " [formGroup]="formGroup" (ngSubmit)="onRegister()">
   <div class="field">
     <div class="ui left icon input">
       <input type="text" formControlName="name" placeholder="სახელი">
@@ -57,7 +57,7 @@
   </a>
 
 
-  <button type="submit" class="ui basic orange right floated button"><i class="sign in alternate icon"></i>შესვლა
+  <button type="submit" class="ui basic orange right floated button"><i class="sign in alternate icon"></i>რეგისტრაცია
   </button>
 
-</div>
+</form>
