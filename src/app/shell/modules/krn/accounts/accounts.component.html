@@ -19,32 +19,15 @@
         <th></th>
         </thead>
         <tbody>
-        <tr>
-          <td class="left aligned">tako</td>
-          <td class="left aligned">tako</td>
-          <td class="right aligned">184.00</td>
+        <tr *ngFor=" let account of accounts">
+          <td class="left aligned">{{account.clientFirstName}}</td>
+          <td class="left aligned">{{account.accountName}}</td>
+          <td class="right aligned">{{account.amount}}</td>
           <td class="right aligned">
             <i class="trash button icon"></i>
           </td>
         </tr>
-        <tr><td class="left aligned">tako</td>
-          <td class="left aligned">tako</td>
-          <td class="right aligned">184.00</td>
-          <td class="right aligned">
-            <i class="trash button icon"></i>
-          </td></tr>
-        <tr><td class="left aligned">tako</td>
-          <td class="left aligned">tako</td>
-          <td class="right aligned">184.00</td>
-          <td class="right aligned">
-            <i class="trash button icon"></i>
-          </td></tr>
-        <tr><td class="left aligned">tako</td>
-          <td class="left aligned">tako</td>
-          <td class="right aligned">184.00</td>
-          <td class="right aligned">
-            <i class="trash button icon"></i>
-          </td></tr>
+
 
         </tbody>
       </table>

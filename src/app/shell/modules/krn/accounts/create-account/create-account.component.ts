@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Validators} from '../../../../../shared/validation-message';
+import {AccountService} from '../account.service';
+import {DialogService} from '../../../../../dialog-service';
+import {ClientsService} from '../../../bpm/clients.service';
 
 @Component({
   selector: 'bg-create-account',
@@ -10,7 +13,8 @@ import {Validators} from '../../../../../shared/validation-message';
 })
 export class CreateAccountComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(private router: Router) {
+  constructor(private router: Router, private accountService: AccountService,
+              private dialogService: DialogService, private clientService: ClientsService) {
   }
 
   ngOnInit(): void {
@@ -39,5 +43,29 @@ export class CreateAccountComponent implements OnInit {
       ]),
     });
   }
+  onCreate() {
+
+
+    if (this.formGroup.invalid) {
+      return;
+    }
+    const accountName = this.get('accountName').value;
+    const amount = this.get('amount').value;
+
+    this.accountService.createAccount(this.clientService.client.value.clientKey,
+      accountName, amount).subscribe(
+      (resData) => {
+        console.log(resData);
+        this.router.navigate(['/krn/accounts/']);
+        this.formGroup.reset();
+      },
+      (error) => {
+        this.dialogService.alert.next(error);
+      }
+
+    );
+
+  }
+
 
 }
