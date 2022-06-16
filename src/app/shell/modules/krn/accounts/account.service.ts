@@ -26,7 +26,9 @@ export class AccountService {
   }
 
 
-
+  fetchAllAccounts(){
+    return this.http.get<Account[]>('accounts');
+  }
 
   createAccount(clientKey, accountName, amount) {
     return this.http

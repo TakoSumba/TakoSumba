@@ -11,6 +11,7 @@ import {ClientsService} from '../../bpm/clients.service';
 })
 export class AccountsComponent implements OnInit {
   accounts: Account[] = [];
+  allAccounts: Account[] = [];
 
   constructor(private accountService: AccountService,
               private loader: LoaderService, private clientService: ClientsService) {
@@ -32,4 +33,7 @@ export class AccountsComponent implements OnInit {
       .pipe((obs) => this.loader.useLoader(obs))
       .subscribe((accounts) => (this.accounts = accounts));
   }
+
+
+
 }
