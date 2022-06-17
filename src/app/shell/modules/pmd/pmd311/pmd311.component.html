@@ -1,9 +1,9 @@
-<div class="ui segments">
+<form class="ui segments" [formGroup]="formGroup">
   <div class="ui segment">
     <h1>თანხის გადარიცხვა</h1>
   </div>
   <div class="ui segment">
-    <form class="ui form "[formGroup]="formGroup">
+    <div class="ui form ">
       <div class="ui fields">
         <div class="nine wide field">
           <label for="senderAccountKey">გამგზავნი ანგარიში</label>
@@ -47,12 +47,14 @@
           <span>{{ error }}</span>
         </p>
       </ng-container>
-    </form>
 
+    </div>
+
+</div>
   <div class="ui segment">
-    <button class="ui orange icon button" routerLink="/krn/accounts">
+    <button type='submit' class="ui orange icon button" (click)="onTransfer()">
       გადარიცხვა
     </button>
   </div>
 
-</div>
+</form>

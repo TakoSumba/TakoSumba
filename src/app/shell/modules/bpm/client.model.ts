@@ -5,6 +5,4 @@ export interface Client {
   clientKey:	number;
   sumAmount:	number;
   plusPoints:	number;
-
-
 }

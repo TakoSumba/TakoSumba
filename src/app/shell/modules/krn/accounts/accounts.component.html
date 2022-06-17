@@ -23,8 +23,8 @@
           <td class="left aligned">{{account.clientFirstName}}</td>
           <td class="left aligned">{{account.accountName}}</td>
           <td class="right aligned">{{account.amount}}</td>
-          <td class="right aligned">
-            <i class="trash button icon"></i>
+          <td class="right aligned" (click)=" onDeleteAccount(account.accountKey)">
+            <i class="trash button icon" ></i>
           </td>
         </tr>
 

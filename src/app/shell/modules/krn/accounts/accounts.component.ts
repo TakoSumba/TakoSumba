@@ -34,6 +34,15 @@ export class AccountsComponent implements OnInit {
       .subscribe((accounts) => (this.accounts = accounts));
   }
 
+  onDeleteAccount(accountKey) {
+    this.accountService
+      .deleteAccount(accountKey)
+      .subscribe(
+        () => {
+          this.accounts = this.accounts.filter((account) => account.accountKey !== accountKey);
+        }
+      );
+  }
 
 
 }

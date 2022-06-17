@@ -6,6 +6,8 @@ import {AccountService} from '../../krn/accounts/account.service';
 import {ClientsService} from '../../bpm/clients.service';
 import {LoaderService} from '../../../../shared/loader/loader.service';
 import {Account} from '../../krn/accounts/account.model';
+import {DialogService} from '../../../../dialog-service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'bg-pmd311',
@@ -19,6 +21,7 @@ export class Pmd311Component implements OnInit {
 
   constructor(private router: Router, private accountService: AccountService,
               private clientService: ClientsService, private loader: LoaderService,
+              private dialogService: DialogService
   ) {
   }
 
@@ -67,5 +70,34 @@ export class Pmd311Component implements OnInit {
     this.accountService.fetchAllAccounts()
       .pipe((obs) => this.loader.useLoader(obs))
       .subscribe((accounts) => (this.allAccounts = accounts));
+  }
+
+  onTransfer() {
+    if (this.formGroup.invalid) {
+      return;
+    }
+    const senderAccountKey = this.get('senderAccountKey').value;
+    const receiverAccountKey = this.get('receiverAccountKey').value;
+    const amount = this.get('amount').value;
+
+    this.accountService.doTransfer(
+      senderAccountKey,
+      receiverAccountKey,
+      amount).pipe(
+      switchMap(() => {
+        return this.clientService.refreshClient();
+      })
+    ).subscribe(
+      (resData) => {
+        this.router.navigate(['/krn/accounts/']);
+
+        this.formGroup.reset();
+      },
+      (error) => {
+        this.dialogService.alert.next(error);
+      }
+    );
+
+    // this.router.navigate(['/krn/accounts']);
   }
 }

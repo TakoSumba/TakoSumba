@@ -15,7 +15,7 @@ export class ClientsService {
 
   client = new BehaviorSubject<Client>(this.getClient());
 
-  constructor(private http: HttpClient, private loaderService:LoaderService) {
+  constructor(private http: HttpClient, private loaderService: LoaderService) {
   }
 
   fetchClients(filter: { firstName: string; lastName: string; clientKey: string; }) {
@@ -29,7 +29,7 @@ export class ClientsService {
     localStorage.setItem('clientData', JSON.stringify(client));
   }
 
-  getClient() {
+  getClient(): Client {
     const clientData = JSON.parse(localStorage.getItem('clientData'));
     return clientData;
   }
@@ -50,5 +50,14 @@ export class ClientsService {
         this.loaderService.useLoader,
         catchError((err) => throwError(err.error)),
       );
+  }
+
+  refreshClient() {
+    return this.fetchClients({firstName: '', clientKey: '', lastName: ''}).pipe(
+      tap(res => {
+        const curClient = this.getClient();
+        this.setClient(res.find((x => x.clientKey === curClient.clientKey)));
+      })
+    );
   }
 }
