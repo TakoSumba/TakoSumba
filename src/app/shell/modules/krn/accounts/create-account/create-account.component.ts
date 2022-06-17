@@ -5,6 +5,7 @@ import {Validators} from '../../../../../shared/validation-message';
 import {AccountService} from '../account.service';
 import {DialogService} from '../../../../../dialog-service';
 import {ClientsService} from '../../../bpm/clients.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'bg-create-account',
@@ -53,7 +54,11 @@ export class CreateAccountComponent implements OnInit {
     const amount = this.get('amount').value;
 
     this.accountService.createAccount(this.clientService.client.value.clientKey,
-      accountName, amount).subscribe(
+      accountName, amount)
+      .pipe(
+        switchMap(() => {
+          return this.clientService.refreshClient();
+        })).subscribe(
       (resData) => {
         console.log(resData);
         this.router.navigate(['/krn/accounts/']);

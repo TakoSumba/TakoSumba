@@ -3,6 +3,7 @@ import {AccountService} from './account.service';
 import {LoaderService} from '../../../../shared/loader/loader.service';
 import {Account} from './account.model';
 import {ClientsService} from '../../bpm/clients.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'bg-accounts',
@@ -37,7 +38,10 @@ export class AccountsComponent implements OnInit {
   onDeleteAccount(accountKey) {
     this.accountService
       .deleteAccount(accountKey)
-      .subscribe(
+      .pipe(
+      switchMap(() => {
+        return this.clientService.refreshClient();
+      })).subscribe(
         () => {
           this.accounts = this.accounts.filter((account) => account.accountKey !== accountKey);
         }
