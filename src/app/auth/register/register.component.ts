@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
   get(controlName) {
     return this.formGroup.get(controlName);
   }
@@ -80,7 +81,7 @@ export class RegisterComponent implements OnInit {
         Validators.pattern(/^\S*$/),
         Validators.minLength(2),
         Validators.maxLength(30),
-        // Validators.checkPassword(this.formGroup.get('password')?.value)
+        Validators.checkPassword(() => this.formGroup?.get('password')?.value)
       ]),
     });
   }

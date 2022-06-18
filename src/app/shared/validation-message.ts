@@ -32,12 +32,12 @@ export class Validators extends NGValidators {
   }
 
   static min(min: number) {
-   return (control) => super.min(min)(control) ? {required: 'გთხოვთ შეიყვანოთ მინიმუმ 0'} : undefined;
+    return (control) => super.min(min)(control) ? {required: 'გთხოვთ შეიყვანოთ მინიმუმ 0'} : undefined;
   }
 
-  // static checkPassword(password: string) {
-  //   return (control) =>
-  //     control.value !== password ? {confirmPasswordMismatch: 'პაროლები არ ემთხვევა დებილო'}
-  //       : undefined;
-  // }
+  static checkPassword(getPassowrd: () => string) {
+    return (control) =>
+      control.value !== getPassowrd() ? {confirmPasswordMismatch: 'პაროლები არ ემთხვევა '}
+        : undefined;
+  }
 }

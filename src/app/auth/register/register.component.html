@@ -46,9 +46,7 @@
       <p *ngFor="let error of errors('confirmPassword')">
         <span class="errorMessage">{{ error }}</span>
       </p>
-      <div *ngIf="checkPassword(get('password').value,get('confirmPassword').value)">
-        <span>პაროლები არ ემთხვევა</span>
-      </div>
+
     </ng-container>
 
   </div>
