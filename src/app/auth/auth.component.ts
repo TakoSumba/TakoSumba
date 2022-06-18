@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ClientsService} from '../shell/modules/bpm/clients.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../shared/auth/auth.service';
 
 @Component({
   selector: 'bg-auth',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    if (this.authService.user.value) {
+      this.router.navigate(['/bpm/bpm000']);
+    }
   }
 
 }
