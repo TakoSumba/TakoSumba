@@ -1,38 +1,35 @@
-
-<div class="ui segments " >
+<form class="ui segments " [formGroup]="formGroup">
   <div class="ui segment">
     <h1>ანგარიშის შექმნა</h1>
   </div>
   <div class="ui segment">
-    <form class="ui form" [formGroup]="formGroup">
+    <div class="ui form">
       <div class="ui fields">
         <div class="nine wide field">
           <label for="accountName">ანგარიშის სახელი </label>
-          <input formControlName="accountName"  id="accountName" type="text" >
+          <input formControlName="accountName" id="accountName" type="text">
         </div>
 
       </div>
       <ng-container *ngIf="get('accountName').touched  && get('accountName').invalid">
-        <p  *ngFor="let error of errors('accountName')">
+        <p *ngFor="let error of errors('accountName')">
           <span>{{ error }}</span>
         </p>
       </ng-container>
       <div class="ui fields">
         <div class="nine wide field">
-          <label for="amount" id="amount" > თანხა </label>
-          <input formControlName="amount" type="number" >
+          <label for="amount" id="amount"> თანხა </label>
+          <input formControlName="amount" type="number">
         </div>
       </div>
-
-    </form>
-    <ng-container *ngIf="get('amount').touched && get('amount').invalid ">
-      <p  *ngFor="let error of errors('amount')">
-        <span>{{ error }}</span>
-      </p>
-    </ng-container>
-
+      <ng-container *ngIf="get('amount').touched && get('amount').invalid ">
+        <p *ngFor="let error of errors('amount')">
+          <span>{{ error }}</span>
+        </p>
+      </ng-container>
+    </div>
   </div>
   <div class="ui segment">
-    <button class="ui orange button" (click)="onCreate()">შექმნა</button>
+    <button type="submit" class="ui orange button" (click)="onCreate()">შექმნა</button>
   </div>
-</div>
+</form>
