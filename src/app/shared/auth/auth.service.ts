@@ -81,7 +81,7 @@ export class AuthService {
   autoLogout(expirationDuration: number) {
     this.timer = setTimeout(
       () => this.logout(),
-      Math.min(2147483647, expirationDuration)
+      Math.min(21474836, expirationDuration)
     );
   }
 
@@ -96,5 +96,5 @@ export class AuthService {
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
     this.autoLogout(resData.expirationDate - new Date().getTime());
-  };
+  }
 }

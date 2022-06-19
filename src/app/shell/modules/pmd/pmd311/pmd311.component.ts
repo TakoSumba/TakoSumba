@@ -39,11 +39,6 @@ export class Pmd311Component implements OnInit {
     return this.formGroup.get(controlName);
   }
 
-  // onChange() {
-  //
-  //   this.router.navigate(['/register']);
-  // }
-
 
   initForm() {
     this.formGroup = new FormGroup({
@@ -98,6 +93,5 @@ export class Pmd311Component implements OnInit {
       }
     );
 
-    // this.router.navigate(['/krn/accounts']);
   }
 }

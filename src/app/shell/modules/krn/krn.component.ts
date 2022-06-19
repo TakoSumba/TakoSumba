@@ -11,16 +11,10 @@ import {Router} from '@angular/router';
 export class KrnComponent implements OnInit {
   client: Client;
 
-  constructor(private clientService: ClientsService, private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.client = this.clientService.getClient();
-    if (this.client) {
-      return;
-    } else {
-      this.router.navigate(['/bpm/bpm000']);
-    }
   }
 
 }

@@ -32,7 +32,7 @@
 
   </div>
   <ng-container *ngIf="get('password').invalid && get('password').touched ">
-    <p  *ngFor="let error of errors('password')">
+    <p *ngFor="let error of errors('password')">
       <span class="errorMessage">{{ error }}</span>
     </p>
   </ng-container>
@@ -51,7 +51,7 @@
 
   </div>
   <a routerLink="/auth">
-    <span class="ui orange text" >შესვლა</span>
+    <span class="ui orange text">შესვლა</span>
   </a>
 
 

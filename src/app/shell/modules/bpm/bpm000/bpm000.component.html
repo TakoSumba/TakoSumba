@@ -4,7 +4,7 @@
   </div>
 
   <div class="ui segment">
-    <form  class="ui bordered form segment" [formGroup]="formGroup">
+    <form class="ui bordered form segment" [formGroup]="formGroup">
       <div class="ui three column grid">
         <div class="column ">
           <div class="field">
@@ -23,7 +23,7 @@
         <div class="column">
           <div class="field">
             <label>კლიენტის უნიკალური</label>
-            <input type="text" formControlName="clientKey" >
+            <input type="text" formControlName="clientKey">
           </div>
 
         </div>
@@ -44,14 +44,14 @@
 
       </div>
 
-      <table >
+      <table>
         <thead>
         <th>სახელი</th>
         <th>გვარი</th>
         <th>კლიენტის უნიკალური</th>
         </thead>
         <tbody>
-        <tr class="client" *ngFor="let client of clients"  (click)="clientClick(client)">
+        <tr class="client" *ngFor="let client of clients" (click)="clientClick(client)">
           <td>{{client.firstName}}</td>
           <td>{{client.lastName}}</td>
           <td>{{client.clientKey}}</td>
@@ -60,6 +60,6 @@
       </table>
 
     </ng-container>
-</div>
+  </div>
 
 </div>

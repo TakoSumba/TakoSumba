@@ -5,11 +5,13 @@ import {KrnicpComponent} from './krnicp/krnicp.component';
 import {AccountsComponent} from './accounts/accounts.component';
 import {CreateAccountComponent} from './accounts/create-account/create-account.component';
 import {OperationsComponent} from './operations/operations.component';
+import {KrnGuard} from './krn.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: KrnComponent,
+    canActivate:[KrnGuard],
     children: [
       {
         path: '',
