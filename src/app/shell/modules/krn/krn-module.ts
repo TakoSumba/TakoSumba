@@ -9,13 +9,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {ShellModule} from '../../shell-module';
 import {KrnRoutingModule} from './krn-routing.module';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
 
   declarations: [KrnComponent, OperationsComponent, KrnicpComponent,
     AccountsComponent, CreateAccountComponent],
-  imports: [KrnRoutingModule, ShellModule, CommonModule, ReactiveFormsModule],
+  imports: [KrnRoutingModule, ShellModule, CommonModule, ReactiveFormsModule, SharedModule],
 })
 export class KrnModule {
 }

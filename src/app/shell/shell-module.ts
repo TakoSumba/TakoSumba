@@ -8,12 +8,13 @@ import {ShellSidebarComponent} from './shell-sidebar/shell-sidebar.component';
 import {ClientHeaderComponent} from './client-header/client-header.component';
 import {CommonModule} from '@angular/common';
 import {PopupDirective} from './shell-header/popup.directive';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [ShellComponent, ShellHeaderComponent, ClientHeaderComponent, ShellSidebarComponent ,
       PopupDirective],
-  imports: [ShellRoutingModule, CommonModule],
+  imports: [ShellRoutingModule, CommonModule, SharedModule],
   exports: [ClientHeaderComponent]
 })
 

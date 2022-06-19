@@ -9,7 +9,7 @@
           <label for="senderAccountKey">გამგზავნი ანგარიში</label>
           <select formControlName="senderAccountKey" id="senderAccountKey">
             <option value="" >აირჩიე</option>
-            <option value="{{account.accountKey}}" *ngFor="let account of accounts">{{account.accountKey}}- {{account.amount}}GEL ({{account.accountName}}) </option>
+            <option value="{{account.accountKey}}" *ngFor="let account of accounts">{{account.accountKey}}- {{account.amount |toFixed :2}}GEL ({{account.accountName}}) </option>
 
           </select>
         </div>
@@ -25,7 +25,7 @@
           <label for="receiverAccountKey">მიმღები ანგარიში</label>
           <select formControlName="receiverAccountKey" id="receiverAccountKey">
             <option value="">აირჩიე</option>
-            <option value="{{account.accountKey}}" *ngFor="let account of allAccounts">{{account.accountKey}}- {{account.amount}}GEL ({{account.accountName}}) </option>
+            <option value="{{account.accountKey }}" *ngFor="let account of allAccounts">{{account.accountKey}}- {{account.amount |toFixed :2}}GEL ({{account.accountName}}) </option>
 
           </select>
         </div>
